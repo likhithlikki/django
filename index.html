@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name Processor</title>
+</head>
+<body>
+    <h1>Enter a Name</h1>
+    <form method="POST" action="/">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <button type="submit">Process</button>
+        <button type="button" onclick="endProcess()">End Process</button>
+    </form>
+    
+    <script>
+        function endProcess() {
+            // Send an AJAX request to the server to stop the process
+            fetch('/end_process', { method: 'POST' })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Process ended successfully.');
+                    } else {
+                        alert('Error ending process.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </script>
+</body>
+</html>
